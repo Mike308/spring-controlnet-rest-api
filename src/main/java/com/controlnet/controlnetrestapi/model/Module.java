@@ -52,4 +52,12 @@ public class Module {
     public void setIcon(Blob icon) {
         this.icon = icon;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
