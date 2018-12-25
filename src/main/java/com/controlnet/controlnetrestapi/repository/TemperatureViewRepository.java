@@ -20,6 +20,6 @@ public interface TemperatureViewRepository extends CrudRepository <TemperatureVi
             "       v_temperatures.sensor_type\n" +
             "  from v_temperatures\n" +
             "  join sensors on sensors.id = v_temperatures.id\n" +
-            "where sensors.module_id = :module_id limit 6", nativeQuery = true)
-    Iterable<TemperatureView> findByModuleId(@Param("module_id") int module_id);
+            "where sensors.module_id = :module_id limit :sensor_cnt", nativeQuery = true)
+    Iterable<TemperatureView> findByModuleId(@Param("module_id") int module_id, @Param("sensor_cnt") int sensorCnt);
 }
