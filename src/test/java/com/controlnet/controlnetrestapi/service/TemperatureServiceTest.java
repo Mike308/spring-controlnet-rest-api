@@ -38,7 +38,13 @@ public class TemperatureServiceTest {
 
     @Test
     public void testGetLastTemperatureByModuleId(){
-        int size =getSizeOfIterable(temperatureService.getLastTemperaturesByModuleId(1));
+        int size =getSizeOfIterable(temperatureService.getLastTemperaturesByModuleId(1, 6));
         assertTrue("FAILED: "+size, size > 0);
+    }
+
+    @Test
+    public void testGetTemperaturesByModuleIdAndDate(){
+        int size = getSizeOfIterable(temperatureService.getTemperatureByModuleIdAndDate(1, "2018-11-18 10:28", "2018-11-18 11:20"));
+        assertTrue(size > 0);
     }
 }

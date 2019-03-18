@@ -21,4 +21,8 @@ public class HumidityService {
     public Iterable<HumidityView> getHumidityMeasurementsByModuleId(int moduleId, int sensorCnt){
         return humidityRepository.findByModuleId(moduleId, sensorCnt);
     }
+
+    public Iterable<HumidityView> getHumidityMeasurementByModuleIdAndDate(int moduleId, String start, String end){
+        return humidityRepository.findByModuleIdAndDate(moduleId, start, end);
+    }
 }

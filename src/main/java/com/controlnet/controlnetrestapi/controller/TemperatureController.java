@@ -24,10 +24,18 @@ public class TemperatureController {
         return temperatureService.getTemperaturesBySensorTypeAndDate(sensorType, startDate, endDate);
     }
 
-    @GetMapping("/module-id/{moduleId}")
-    public Iterable<TemperatureView> getLastTemperaturesByModuleId(@PathVariable int moduleId){
-        return temperatureService.getLastTemperaturesByModuleId(moduleId);
+    @GetMapping("/module-id/{moduleId}/{sensorCnt}")
+    public Iterable<TemperatureView> getLastTemperaturesByModuleId(@PathVariable int moduleId, @PathVariable int sensorCnt){
+        return temperatureService.getLastTemperaturesByModuleId(moduleId, sensorCnt);
     }
+
+    @GetMapping("/module-id/{moduleId}/start-date/{startDate}/end-date/{endDate}")
+    public Iterable<TemperatureView> getTemperaturesByModuleIdAndDate(@PathVariable int moduleId, @PathVariable String startDate, @PathVariable String endDate){
+        return temperatureService.getTemperatureByModuleIdAndDate(moduleId, startDate, endDate);
+    }
+
+
+
 }
 
 

@@ -5,6 +5,8 @@ import com.controlnet.controlnetrestapi.repository.TemperatureViewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TemperatureService {
     @Autowired
@@ -18,10 +20,11 @@ public class TemperatureService {
         return temperatureViewRepository.findAllByDateAAndDateAndSensorType(startDate, endDate, sensorType);
     }
 
-    public Iterable<TemperatureView> getLastTemperaturesByModuleId(int moduleId){
-        return temperatureViewRepository.findByModuleId(moduleId);
+    public Iterable<TemperatureView> getLastTemperaturesByModuleId(int moduleId, int sensorCnt){
+        return temperatureViewRepository.findByModuleId(moduleId, sensorCnt);
     }
 
-
-
+    public Iterable<TemperatureView> getTemperatureByModuleIdAndDate(int moduleId, String start, String end) {
+        return temperatureViewRepository.findByModuleIdAndDate(moduleId, start, end);
+    }
 }

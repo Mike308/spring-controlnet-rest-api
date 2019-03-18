@@ -7,20 +7,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 @Data
 @Entity
 @Immutable
-@Table(name = "v_temperatures")
-public class TemperatureView {
+@Table(name = "v_light_intensity")
+public class LightIntensityView {
     @Id
-    @Column(name = "temperature_id")
-    private int temperatureId;
     private int id;
-    @Column(name = "name")
-    private String slotName;
-    @Column(name = "temperature")
-    private float temperature;
+    @Column(name = "light_intensity")
+    private double lightIntensity;
     private String date;
     @Column(name = "sensor_type")
     private String sensorType;
+    @Column(name = "name")
+    private String slotName;
 }
+
+
