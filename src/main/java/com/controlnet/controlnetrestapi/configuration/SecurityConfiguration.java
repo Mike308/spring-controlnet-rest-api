@@ -1,22 +1,16 @@
 package com.controlnet.controlnetrestapi.configuration;
 
-import com.controlnet.controlnetrestapi.component.CustomBasicAuthenticationEntryPoint;
-import com.controlnet.controlnetrestapi.repository.UserRepository;
 import com.controlnet.controlnetrestapi.security.JWTAuthentificationFilter;
 import com.controlnet.controlnetrestapi.security.JWTAuthorizationFilter;
-import com.controlnet.controlnetrestapi.service.CustomUserDetailsService;
 import com.controlnet.controlnetrestapi.service.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -35,7 +29,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
-
     }
 
     private PasswordEncoder getPasswordEncoder() {
@@ -46,8 +39,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             }
 
             @Override
-            public boolean matches(CharSequence charSequence, String s) {
-                return true;
+            public boolean matches(CharSequence charSequence, String s)  {
+                System.out.println("Char sequence: " + charSequence);
+                System.out.println("String: " + s);
+                return charSequence.equals(s);
             }
         };
     }
