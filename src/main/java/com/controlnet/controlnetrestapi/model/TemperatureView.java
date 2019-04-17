@@ -15,7 +15,8 @@ public class TemperatureView {
     @Id
     @Column(name = "temperature_id")
     private int temperatureId;
-    private int id;
+    @Column(name = "id")
+    private int sensorId;
     @Column(name = "name")
     private String slotName;
     @Column(name = "temperature")
@@ -23,4 +24,5 @@ public class TemperatureView {
     private String date;
     @Column(name = "sensor_type")
     private String sensorType;
+
 }
