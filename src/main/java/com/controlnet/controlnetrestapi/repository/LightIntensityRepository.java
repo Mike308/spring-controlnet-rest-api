@@ -20,7 +20,7 @@ public interface LightIntensityRepository extends CrudRepository<LightIntensityV
     List<LightIntensityView> getLightIntensityByModuleIdAndDate(@Param("module_id")String moduleId, @Param("start_date") String startDate, @Param("end_date") String endDate);
 
     @Query(nativeQuery = true, value = "select\n" +
-            "  v_light_intensity.id,v_light_intensity.sensor_type,v_light_intensity.name,\n" +
+            "  v_light_intensity.id,v_light_intensity.sensor_type,v_light_intensity.name,v_light_intensity.sensor_id,\n" +
             "  v_light_intensity.light_intensity,\n" +
             "  v_light_intensity.date\n" +
             "from v_light_intensity\n" +
