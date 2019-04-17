@@ -37,9 +37,9 @@ public class SensorService {
     }
 
     @Transactional
-    public boolean setSlotName(String oldSlotName, String newSlotName){
+    public boolean setSlotName(int sensorId, String newSlotName){
         try {
-            int slotId = sensorRepository.getAllBySensorSlotName(oldSlotName).getSensorSlotId();
+            int slotId = sensorRepository.getAllBySensorId(sensorId).getSensorSlotId();
             System.out.println("Slot id: " + slotId);
             sensorSlotRepository.setSlotName(slotId, newSlotName);
             return true;
@@ -48,14 +48,4 @@ public class SensorService {
             return false;
         }
     }
-
-
-
-
-
-
-
-
-
-
 }
