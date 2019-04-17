@@ -22,6 +22,8 @@ public class LightIntensityView {
     private String sensorType;
     @Column(name = "name")
     private String slotName;
+    @Column(name = "sensor_id")
+    private int sensorId;
 }
 
 
