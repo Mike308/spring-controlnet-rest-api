@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class SensorSlotRequest {
-    String oldName;
+    int sensorId;
     String newName;
 }
