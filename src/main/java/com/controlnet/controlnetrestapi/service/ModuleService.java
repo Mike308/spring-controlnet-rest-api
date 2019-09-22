@@ -26,9 +26,16 @@ public class ModuleService {
         return moduleRepository.findByAddress(address);
     }
 
-    public void insertNewModule(Module module){
-        moduleRepository.save(module);
+    public boolean insertNewModule(Module module){
+        try {
+            moduleRepository.save(module);
+            return true;
+        }catch (Exception e) {
+            return false;
+        }
     }
+
+
 
 
 }
