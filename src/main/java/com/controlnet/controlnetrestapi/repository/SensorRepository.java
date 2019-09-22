@@ -1,9 +1,10 @@
 package com.controlnet.controlnetrestapi.repository;
 
-import com.controlnet.controlnetrestapi.model.SensorView;
+import com.controlnet.controlnetrestapi.model.Sensor;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface SensorRepository extends CrudRepository <SensorView, Integer> {
-    Iterable<SensorView> getAllById(int id);
-    SensorView getAllBySensorId(int sensorId);
+@Repository
+public interface SensorRepository extends CrudRepository <Sensor, Integer> {
+
 }
