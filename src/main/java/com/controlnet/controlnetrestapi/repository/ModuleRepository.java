@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ModuleRepository extends CrudRepository<Module, Integer> {
-    public Module findByType(String type);
-    public Module findById(int id);
-    public Module findByAddress(String address);
+     Module findByType(String type);
+     Module findById(int id);
+     Module findByAddress(String address);
 }
 
