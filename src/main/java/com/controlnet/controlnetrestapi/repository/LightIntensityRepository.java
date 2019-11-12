@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface LightIntensityRepository extends CrudRepository<LightIntensityView, Integer> {
     @Query(nativeQuery = true, value = "select\n" +
-            "  v_light_intensity.id,v_light_intensity.sensor_type,v_light_intensity.name,\n" +
+            "  v_light_intensity.id,v_light_intensity.sensor_type,v_light_intensity.name,v_light_intensity.sensor_id,\n" +
             "  v_light_intensity.light_intensity,\n" +
             "  v_light_intensity.date\n" +
             "from v_light_intensity\n" +
