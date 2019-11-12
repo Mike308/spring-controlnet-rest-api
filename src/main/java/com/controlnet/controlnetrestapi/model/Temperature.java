@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Table(name = "temperatures")
 public class Temperature {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private int id;
     @Column(name = "sensor_id")
