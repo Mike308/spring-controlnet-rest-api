@@ -1,6 +1,8 @@
 package com.controlnet.controlnetrestapi.service;
 
+import com.controlnet.controlnetrestapi.model.Temperature;
 import com.controlnet.controlnetrestapi.model.TemperatureView;
+import com.controlnet.controlnetrestapi.repository.TemperatureRepository;
 import com.controlnet.controlnetrestapi.repository.TemperatureViewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,9 @@ import java.util.List;
 public class TemperatureService {
     @Autowired
     private TemperatureViewRepository temperatureViewRepository;
+
+    @Autowired
+    private TemperatureRepository temperatureRepository;
 
     public Iterable<TemperatureView> getAllTemperaturesBySensorType(String sensorType){
         return temperatureViewRepository.findAllBySensorType(sensorType);
@@ -27,4 +32,13 @@ public class TemperatureService {
     public Iterable<TemperatureView> getTemperatureByModuleIdAndDate(int moduleId, String start, String end) {
         return temperatureViewRepository.findByModuleIdAndDate(moduleId, start, end);
     }
+
+    private void insertTemperature(Temperature temperature) {
+        temperatureRepository.save(temperature);
+    }
+
+
+
+
+
 }
