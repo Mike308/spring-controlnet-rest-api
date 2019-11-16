@@ -33,9 +33,6 @@ public class TemperatureController {
     public Iterable<TemperatureView> getTemperaturesByModuleIdAndDate(@PathVariable int moduleId, @PathVariable String startDate, @PathVariable String endDate){
         return temperatureService.getTemperatureByModuleIdAndDate(moduleId, startDate, endDate);
     }
-
-
-
 }
 
 
