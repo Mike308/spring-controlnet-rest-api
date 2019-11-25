@@ -7,6 +7,7 @@ import com.controlnet.controlnetrestapi.repository.TemperatureViewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -32,10 +33,12 @@ public class TemperatureService {
     public Iterable<TemperatureView> getTemperatureByModuleIdAndDate(int moduleId, String start, String end) {
         return temperatureViewRepository.findByModuleIdAndDate(moduleId, start, end);
     }
-
-    private void insertTemperature(Temperature temperature) {
+    @Transactional
+    public void insertTemperature(Temperature temperature) {
         temperatureRepository.save(temperature);
     }
+
+
 
 
 
