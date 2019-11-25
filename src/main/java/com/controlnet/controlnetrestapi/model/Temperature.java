@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Table(name = "temperatures")
 public class Temperature {
     @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private int id;
     @Column(name = "sensor_id")
@@ -22,4 +21,7 @@ public class Temperature {
     private float temperature;
     @Column(name = "date")
     private String date;
+    @Transient
+    private String sensorCode;
+
 }
