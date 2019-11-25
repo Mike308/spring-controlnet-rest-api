@@ -10,7 +10,6 @@ import java.sql.Blob;
 @Table(name = "modules")
 public class Module {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private int id;
     @Column(name = "name")

@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Table(name = "dictionary")
 public class Dictionary {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     @Column(name = "val")
     private String value;
