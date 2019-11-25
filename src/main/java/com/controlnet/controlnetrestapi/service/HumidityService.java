@@ -31,7 +31,7 @@ public class HumidityService {
         return humidityViewRepository.findByModuleIdAndDate(moduleId, start, end);
     }
 
-    private void insertHumidity(Humidity humidity) {
+    public void insertHumidity(Humidity humidity) {
         humidityRepository.save(humidity);
     }
 }
