@@ -9,5 +9,6 @@ public interface ModuleRepository extends CrudRepository<Module, Integer> {
      Module findByType(String type);
      Module findById(int id);
      Module findByAddress(String address);
+     Module findFirstByOrderByIdDesc();
 }
 
