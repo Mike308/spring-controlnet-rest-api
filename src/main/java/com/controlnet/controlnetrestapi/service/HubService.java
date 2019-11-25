@@ -29,4 +29,29 @@ public class HubService {
         return moduleHub;
     }
 
+    public void insertTemperatureToHub(List<Temperature> temperatures) {
+        temperatures.stream().forEach(temperature -> {
+            Sensor sensor = sensorService.getSensorBySensorCode(temperature.getSensorCode());
+            temperature.setSensorId(sensor.getId());
+            temperatureService.insertTemperature(temperature);
+        });
+    }
+
+    public void insertHumidityToHub(Humidity humidity) {
+        Sensor sensor = sensorService.getSensorBySensorCode(humidity.getSensorCode());
+        humidity.setSensorId(sensor.getId());
+    }
+
+    public void insertSensors(List<Sensor> sensors, String moduleAddress) {
+        sensors.forEach(sensor -> {
+            sensor.setModuleId(moduleService.getModuleByAddress(moduleAddress).getId());
+            sensorService.addNewSensor(sensor);
+        });
+    }
+
+
+
+
+
+
 }
