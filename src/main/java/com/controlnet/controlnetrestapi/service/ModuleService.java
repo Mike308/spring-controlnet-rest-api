@@ -26,12 +26,12 @@ public class ModuleService {
         return moduleRepository.findByAddress(address);
     }
 
-    public boolean insertNewModule(Module module){
+    public int insertNewModule(Module module){
         try {
             moduleRepository.save(module);
-            return true;
+            return moduleRepository.findFirstByOrderByIdDesc().getId();
         }catch (Exception e) {
-            return false;
+            return -1;
         }
     }
 
