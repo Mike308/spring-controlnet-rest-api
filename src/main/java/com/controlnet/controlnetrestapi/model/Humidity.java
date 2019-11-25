@@ -20,6 +20,7 @@ public class Humidity {
     private double humidity;
     @Column(name = "date")
     private String date;
+    private String sensorCode;
 }
 
 
