@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/commands")
@@ -21,13 +20,11 @@ public class CommandController {
 
     @GetMapping("/{moduleId}")
     public List<Command> getCommands(@PathVariable int moduleId) {
-       return commandService.getCommands(moduleId);
+        return commandService.getCommands(moduleId);
     }
 
     @PostMapping("/add")
-    public void addCommands(@PathVariable Map<Object, Object> body) {
-        if (body.get("commands") instanceof  List) {
-
-        }
+    public Command addCommands(@RequestBody Command command) {
+        return commandService.addCommand(command);
     }
 }
