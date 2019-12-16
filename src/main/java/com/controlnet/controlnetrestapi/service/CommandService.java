@@ -16,11 +16,12 @@ public class CommandService {
         return commandRepository.getCommandByModuleIdOrderByCommandOrder(moduleId);
     }
 
-    private void addCommand(Command command) {
+    public Command addCommand(Command command) {
         commandRepository.save(command);
+        return commandRepository.findFirstByOrderByIdDesc();
     }
 
-    public void addComands(List<Command> commands) {
+    public void addCommands(List<Command> commands) {
         commands.forEach(this::addCommand);
     }
 
