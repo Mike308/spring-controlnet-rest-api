@@ -20,9 +20,4 @@ public class CommandService {
         commandRepository.save(command);
         return commandRepository.findFirstByOrderByIdDesc();
     }
-
-    public void addCommands(List<Command> commands) {
-        commands.forEach(this::addCommand);
-    }
-
 }
