@@ -1,6 +1,5 @@
 package com.controlnet.controlnetrestapi.controller;
 
-import com.controlnet.controlnetrestapi.model.SensorSlot;
 import com.controlnet.controlnetrestapi.model.SensorSlotRequest;
 import com.controlnet.controlnetrestapi.model.SensorView;
 import com.controlnet.controlnetrestapi.service.SensorService;
@@ -25,6 +24,8 @@ public class SensorController {
         boolean result = sensorService.setSlotName(sensorSlotRequest.getSensorId(), sensorSlotRequest.getNewName());
         return new ResponseEntity<>(sensorSlotRequest, HttpStatus.OK);
     }
+
+
 
 
 }
