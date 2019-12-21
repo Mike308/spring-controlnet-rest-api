@@ -9,4 +9,5 @@ public interface CommandRepository extends CrudRepository<Command, Integer> {
     List<Command> getCommandByModuleIdOrderByCommandOrder(int moduleId);
     Command findFirstByOrderByIdDesc();
     void deleteById(int id);
+    void deleteByModuleId(int moduleId);
 }
