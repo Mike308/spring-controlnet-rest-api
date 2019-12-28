@@ -38,6 +38,11 @@ public class TemperatureService {
         temperatureRepository.save(temperature);
     }
 
+    public void deleteTemperature(int sensorId) {
+        temperatureRepository.deleteBySensorId(sensorId);
+    }
+
+
 
 
 
