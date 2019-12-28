@@ -27,4 +27,14 @@ public class CommandController {
     public Command addCommands(@RequestBody Command command) {
         return commandService.addCommand(command);
     }
+
+    @GetMapping("/delete/{id}")
+    public void deleteCommand(@PathVariable int id) {
+        commandService.deleteCommand(id);
+    }
+
+    @GetMapping("/delete-all/{moduleId}")
+    public void deleteAllCommands(@PathVariable int moduleId) {
+        commandService.deleteCommands(moduleId);
+    }
 }
