@@ -30,7 +30,7 @@ public class HubService {
     }
 
     public void insertTemperatureToHub(List<Temperature> temperatures) {
-        temperatures.stream().forEach(temperature -> {
+        temperatures.forEach(temperature -> {
             Sensor sensor = sensorService.getSensorBySensorCode(temperature.getSensorCode());
             temperature.setSensorId(sensor.getId());
             temperatureService.insertTemperature(temperature);
@@ -48,6 +48,25 @@ public class HubService {
             sensorService.addNewSensor(sensor);
         });
     }
+    private void deleteAllMeasurements(int moduleId) {
+        sensorService.getAllSensorByModuleId(moduleId).forEach(sensorView -> {
+            temperatureService.deleteTemperature(sensorView.getSensorId());
+            humidityService.deleteHumidity(sensorView.getSensorId());
+        });
+    }
+
+    private void deleteAllSensors(int moduleId) {
+        sensorService.deleteSensors(moduleId);
+    }
+
+    public void deleteAllSensorsAndMeasurements(int moduleId) {
+        deleteAllMeasurements(moduleId);
+        deleteAllSensors(moduleId);
+    }
+
+
+
+
 
 
 
