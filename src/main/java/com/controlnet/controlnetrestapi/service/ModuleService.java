@@ -4,6 +4,7 @@ import com.controlnet.controlnetrestapi.model.Module;
 import com.controlnet.controlnetrestapi.repository.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ModuleService {
@@ -33,6 +34,11 @@ public class ModuleService {
         }catch (Exception e) {
             return -1;
         }
+    }
+
+    @Transactional
+    public void deleteModule(int moduleId) {
+        moduleRepository.deleteById(moduleId);
     }
 
 
