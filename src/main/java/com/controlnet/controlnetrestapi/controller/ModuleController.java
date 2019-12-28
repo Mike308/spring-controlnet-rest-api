@@ -25,6 +25,11 @@ public class ModuleController {
     @PostMapping("/add-new-module")
     public int addNewModule(@RequestBody Module module) { return moduleService.insertNewModule(module);}
 
+    @GetMapping("/delete-module/{moduleId}")
+    public void deleteModule(@PathVariable int moduleId) {
+        moduleService.deleteModule(moduleId);
+    }
+
 
 
 }
