@@ -67,6 +67,10 @@ public class SensorService {
         }
     }
 
+    public void deleteSensors(int moduleId) {
+        sensorRepository.deleteByModuleId(moduleId);
+    }
+
 
 
 
