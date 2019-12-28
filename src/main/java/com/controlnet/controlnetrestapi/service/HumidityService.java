@@ -34,4 +34,10 @@ public class HumidityService {
     public void insertHumidity(Humidity humidity) {
         humidityRepository.save(humidity);
     }
+
+    public void deleteHumidity(int sensorId) {
+        humidityRepository.deleteBySensorId(sensorId);
+    }
+
+
 }
