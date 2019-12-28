@@ -4,6 +4,7 @@ import com.controlnet.controlnetrestapi.model.Command;
 import com.controlnet.controlnetrestapi.repository.CommandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,5 +20,15 @@ public class CommandService {
     public Command addCommand(Command command) {
         commandRepository.save(command);
         return commandRepository.findFirstByOrderByIdDesc();
+    }
+
+    @Transactional
+    public void deleteCommand(int id) {
+        commandRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteCommands(int moduleId) {
+        commandRepository.deleteByModuleId(moduleId);
     }
 }
