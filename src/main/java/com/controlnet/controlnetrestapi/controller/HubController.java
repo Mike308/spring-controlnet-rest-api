@@ -38,5 +38,8 @@ public class HubController {
         hubService.insertHumidityToHub(humidity);
     }
 
-
+    @GetMapping("/remove-sensors/{moduleId}")
+    public void removeAllSensorsAndMeasurements(@PathVariable int moduleId) {
+        hubService.deleteAllSensorsAndMeasurements(moduleId);
+    }
 }
