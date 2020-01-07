@@ -1,6 +1,7 @@
 package com.controlnet.controlnetrestapi.service;
 
 import com.controlnet.controlnetrestapi.model.Sensor;
+import com.controlnet.controlnetrestapi.model.SensorSlot;
 import com.controlnet.controlnetrestapi.model.SensorView;
 import com.controlnet.controlnetrestapi.repository.SensorRepository;
 import com.controlnet.controlnetrestapi.repository.SensorViewRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class SensorService {
@@ -40,8 +42,16 @@ public class SensorService {
         return sensorRepository.getSensorBySensorCode(code);
     }
 
+    public List<Sensor> getSensorsBySensorCode(String sensorCode) {
+        return sensorRepository.findAllBySensorCode(sensorCode);
+    }
+
     public int getSensorCount(int moduleId){
         return getSizeOfIterable(sensorViewRepository.getAllById(moduleId));
+    }
+
+    public SensorSlot getLastAddedSensorSlot() {
+        return sensorSlotRepository.findFirstByOrderByIdDesc();
     }
 
     @Transactional
@@ -60,6 +70,17 @@ public class SensorService {
     public boolean addNewSensor(Sensor sensor) {
         try {
             sensorRepository.save(sensor);
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Transactional
+    public boolean addSensorSlot(SensorSlot sensorSlot) {
+        try{
+            sensorSlotRepository.save(sensorSlot);
             return true;
         }catch (Exception e) {
             e.printStackTrace();
