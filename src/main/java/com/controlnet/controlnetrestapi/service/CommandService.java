@@ -17,6 +17,10 @@ public class CommandService {
         return commandRepository.getCommandByModuleIdOrderByCommandOrder(moduleId);
     }
 
+    public List<Command> getCommands() {
+        return  commandRepository.findAll();
+    }
+
     public Command addCommand(Command command) {
         commandRepository.save(command);
         return commandRepository.findFirstByOrderByIdDesc();
