@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface CommandRepository extends CrudRepository<Command, Integer> {
     List<Command> getCommandByModuleIdOrderByCommandOrder(int moduleId);
+    List<Command> findAll();
     Command findFirstByOrderByIdDesc();
     void deleteById(int id);
     void deleteByModuleId(int moduleId);
