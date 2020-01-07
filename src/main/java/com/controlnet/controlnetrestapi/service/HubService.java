@@ -29,17 +29,61 @@ public class HubService {
         return moduleHub;
     }
 
-    public void insertTemperatureToHub(List<Temperature> temperatures) {
+    public void insertTemperatureToHub(List<Temperature> temperatures, int moduleId) {
         temperatures.forEach(temperature -> {
-            Sensor sensor = sensorService.getSensorBySensorCode(temperature.getSensorCode());
-            temperature.setSensorId(sensor.getId());
-            temperatureService.insertTemperature(temperature);
+            if (sensorService.getSensorsBySensorCode(temperature.getSensorCode()).size() > 0) {
+                Sensor sensor = sensorService.getSensorBySensorCode(temperature.getSensorCode());
+                temperature.setSensorId(sensor.getId());
+                temperatureService.insertTemperature(temperature);
+            }else {
+                SensorSlot sensorSlot = new SensorSlot();
+                sensorSlot.setName(temperature.getSensorCode());
+                sensorService.addSensorSlot(sensorSlot);
+                sensorSlot = sensorService.getLastAddedSensorSlot();
+                Sensor sensor = new Sensor();
+                sensor.setModuleId(moduleId);
+                sensor.setSensorCode(temperature.getSensorCode());
+                sensor.setSensorSlot(sensorSlot.getId());
+                Module module = moduleService.getModuleById(moduleId);
+                if (module.getType().equals("temp_module")) {
+                    sensor.setSensorType("T");
+                }else if (module.getType().equals("dht11_module")) {
+                    sensor.setSensorType("H");
+                }
+                sensorService.addNewSensor(sensor);
+                sensor = sensorService.getSensorBySensorCode(temperature.getSensorCode());
+                temperature.setSensorId(sensor.getId());
+                temperatureService.insertTemperature(temperature);
+            }
         });
     }
 
-    public void insertHumidityToHub(Humidity humidity) {
-        Sensor sensor = sensorService.getSensorBySensorCode(humidity.getSensorCode());
-        humidity.setSensorId(sensor.getId());
+    public void insertHumidityToHub(Humidity humidity, int moduleId) {
+        if (sensorService.getSensorsBySensorCode(humidity.getSensorCode()).size() > 0) {
+            Sensor sensor = sensorService.getSensorBySensorCode(humidity.getSensorCode());
+            humidity.setSensorId(sensor.getId());
+            humidityService.insertHumidity(humidity);
+        }else {
+            SensorSlot sensorSlot = new SensorSlot();
+            sensorSlot.setName(humidity.getSensorCode());
+            sensorService.addSensorSlot(sensorSlot);
+            sensorSlot = sensorService.getLastAddedSensorSlot();
+            Sensor sensor = new Sensor();
+            sensor.setModuleId(moduleId);
+            sensor.setSensorCode(humidity.getSensorCode());
+            sensor.setSensorSlot(sensorSlot.getId());
+            Module module = moduleService.getModuleById(moduleId);
+            if (module.getType().equals("temp_module")) {
+                sensor.setSensorType("T");
+            }else if (module.getType().equals("dht11_module")) {
+                sensor.setSensorType("H");
+            }
+            sensorService.addNewSensor(sensor);
+            sensor = sensorService.getSensorBySensorCode(humidity.getSensorCode());
+            humidity.setSensorId(sensor.getId());
+            humidityService.insertHumidity(humidity);
+
+        }
     }
 
     public void insertSensors(List<Sensor> sensors, String moduleAddress) {
@@ -63,14 +107,4 @@ public class HubService {
         deleteAllMeasurements(moduleId);
         deleteAllSensors(moduleId);
     }
-
-
-
-
-
-
-
-
-
-
 }
