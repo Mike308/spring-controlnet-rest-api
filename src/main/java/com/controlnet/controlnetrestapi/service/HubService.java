@@ -105,6 +105,10 @@ public class HubService {
 
     public void deleteAllSensorsAndMeasurements(int moduleId) {
         deleteAllMeasurements(moduleId);
+        List<SensorView> sensors = sensorService.getAllSensorByModuleId(moduleId);
         deleteAllSensors(moduleId);
+        sensors.forEach(sensor -> {
+            sensorService.deleteSensorSlot(sensor.getSensorSlotId());
+        });
     }
 }
