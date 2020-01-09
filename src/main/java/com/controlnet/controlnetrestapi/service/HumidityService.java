@@ -7,6 +7,8 @@ import com.controlnet.controlnetrestapi.repository.HumidityViewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class HumidityService {
     @Autowired
@@ -31,10 +33,12 @@ public class HumidityService {
         return humidityViewRepository.findByModuleIdAndDate(moduleId, start, end);
     }
 
+    @Transactional
     public void insertHumidity(Humidity humidity) {
         humidityRepository.save(humidity);
     }
 
+    @Transactional
     public void deleteHumidity(int sensorId) {
         humidityRepository.deleteBySensorId(sensorId);
     }
