@@ -11,6 +11,7 @@ public interface SensorSlotRepository extends CrudRepository<SensorSlot, Integer
     @Query(nativeQuery = true, value = "update sensor_slots set name = :slot_name where id = :slot_id")
     void setSlotName(@Param("slot_id") int id, @Param("slot_name") String slotName);
     SensorSlot findFirstByOrderByIdDesc();
+    void deleteById(int id);
 
 
 }
