@@ -34,7 +34,7 @@ public class SensorService {
         return i;
     }
 
-    public Iterable<SensorView> getAllSensorByModuleId(int moduleId){
+    public List<SensorView> getAllSensorByModuleId(int moduleId){
         return sensorViewRepository.getAllById(moduleId);
     }
 
@@ -88,10 +88,15 @@ public class SensorService {
         }
     }
 
+    @Transactional
     public void deleteSensors(int moduleId) {
         sensorRepository.deleteByModuleId(moduleId);
     }
 
+    @Transactional
+    public void deleteSensorSlot(int slotId) {
+        sensorSlotRepository.deleteById(slotId);
+    }
 
 
 
