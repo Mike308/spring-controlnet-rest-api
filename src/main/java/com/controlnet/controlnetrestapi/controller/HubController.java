@@ -1,9 +1,6 @@
 package com.controlnet.controlnetrestapi.controller;
 
-import com.controlnet.controlnetrestapi.model.Humidity;
-import com.controlnet.controlnetrestapi.model.ModuleHub;
-import com.controlnet.controlnetrestapi.model.Sensor;
-import com.controlnet.controlnetrestapi.model.Temperature;
+import com.controlnet.controlnetrestapi.model.*;
 import com.controlnet.controlnetrestapi.service.HubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,13 +26,13 @@ public class HubController {
     }
 
     @PostMapping("/insert-temperatures")
-    public void insertTemperatures(@RequestBody List<Temperature> temperatures) {
-        hubService.insertTemperatureToHub(temperatures);
+    public void insertTemperatures(@RequestBody TemperatureRequest temperatures) {
+        hubService.insertTemperatureToHub(temperatures.getTemperatures(), temperatures.getModuleId());
     }
 
     @PostMapping("/insert-humidity")
-    public void insertTemperatures(@RequestBody Humidity humidity) {
-        hubService.insertHumidityToHub(humidity);
+    public void insertHumidity(@RequestBody HumidityRequest humidity) {
+        hubService.insertHumidityToHub(humidity.getHumidity(),  humidity.getModuleId());
     }
 
     @GetMapping("/remove-sensors/{moduleId}")
