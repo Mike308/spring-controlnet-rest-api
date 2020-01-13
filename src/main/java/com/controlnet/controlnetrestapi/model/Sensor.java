@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "sensors")
 public class Sensor {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     int id;
     @Column(name = "module_id")
