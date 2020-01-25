@@ -35,6 +35,11 @@ public class HubController {
         hubService.insertHumidityToHub(humidity.getHumidity(),  humidity.getModuleId());
     }
 
+    @PostMapping("/insert-light-intensity")
+    public void insertLightIntensity(@RequestBody LightIntensityRequest lightIntensityRequest) {
+        hubService.insertLightIntensityToHub(lightIntensityRequest.getLightIntensity(), lightIntensityRequest.getModuleId());
+    }
+
     @GetMapping("/remove-sensors/{moduleId}")
     public void removeAllSensorsAndMeasurements(@PathVariable int moduleId) {
         hubService.deleteAllSensorsAndMeasurements(moduleId);

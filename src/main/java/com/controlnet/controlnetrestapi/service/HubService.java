@@ -34,8 +34,10 @@ public class HubService {
             if (sensorService.getSensorsBySensorCode(temperature.getSensorCode()).size() > 0) {
                 Sensor sensor = sensorService.getSensorBySensorCode(temperature.getSensorCode());
                 temperature.setSensorId(sensor.getId());
+                System.out.println("Inserting new temperature: " + temperature);
                 temperatureService.insertTemperature(temperature);
             }else {
+                System.out.println("Inserting sensor slot: " + temperature.getSensorCode());
                 SensorSlot sensorSlot = new SensorSlot();
                 sensorSlot.setName(temperature.getSensorCode());
                 sensorService.addSensorSlot(sensorSlot);
@@ -53,6 +55,7 @@ public class HubService {
                 sensorService.addNewSensor(sensor);
                 sensor = sensorService.getSensorBySensorCode(temperature.getSensorCode());
                 temperature.setSensorId(sensor.getId());
+                System.out.println("Inserting new temperature: " + temperature);
                 temperatureService.insertTemperature(temperature);
             }
         });
@@ -83,6 +86,27 @@ public class HubService {
             humidity.setSensorId(sensor.getId());
             humidityService.insertHumidity(humidity);
 
+        }
+    }
+
+    public void insertLightIntensityToHub(LightIntensity lightIntensity, int moduleId) {
+        if (sensorService.getSensorsBySensorCode(lightIntensity.getSensorCode()).size() > 0) {
+            Sensor sensor = sensorService.getSensorBySensorCode(lightIntensity.getSensorCode());
+            lightIntensity.setSensorId(sensor.getId());
+            lightIntensityService.insertNewLightIntensity(lightIntensity);
+        }else  {
+            SensorSlot sensorSlot = new SensorSlot();
+            sensorSlot.setName(lightIntensity.getSensorCode());
+            sensorSlot = sensorService.getLastAddedSensorSlot();
+            Sensor sensor = new Sensor();
+            sensor.setModuleId(moduleId);
+            sensor.setSensorCode(lightIntensity.getSensorCode());
+            sensor.setSensorSlot(sensorSlot.getId());
+            sensor.setSensorType("LX");
+            sensorService.addNewSensor(sensor);
+            sensor = sensorService.getSensorBySensorCode(lightIntensity.getSensorCode());
+            lightIntensity.setSensorId(sensor.getId());
+            lightIntensityService.insertNewLightIntensity(lightIntensity);
         }
     }
 
