@@ -97,6 +97,7 @@ public class HubService {
         }else  {
             SensorSlot sensorSlot = new SensorSlot();
             sensorSlot.setName(lightIntensity.getSensorCode());
+            sensorService.addSensorSlot(sensorSlot);
             sensorSlot = sensorService.getLastAddedSensorSlot();
             Sensor sensor = new Sensor();
             sensor.setModuleId(moduleId);
