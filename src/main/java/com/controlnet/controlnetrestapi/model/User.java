@@ -1,6 +1,5 @@
 package com.controlnet.controlnetrestapi.model;
 
-import lombok.Data;
 import lombok.Getter;
 
 
@@ -8,24 +7,24 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class Users {
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     private int id;
     private String name;
     private String password;
     private String role;
 
-    public Users(){
+    public User(){
 
     }
 
-    public Users(Users users){
-        this.id = users.getId();
-        this.name = users.getName();
-        this.password = users.getPassword();
-        this.role = users.getRole();
+    public User(User user){
+        this.id = user.getId();
+        this.name = user.getName();
+        this.password = user.getPassword();
+        this.role = user.getRole();
     }
 
     public int getId() {
