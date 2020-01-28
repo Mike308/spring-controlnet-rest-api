@@ -121,6 +121,7 @@ public class HubService {
         sensorService.getAllSensorByModuleId(moduleId).forEach(sensorView -> {
             temperatureService.deleteTemperature(sensorView.getSensorId());
             humidityService.deleteHumidity(sensorView.getSensorId());
+            lightIntensityService.deleteAllMeasurements(sensorView.getSensorId());
         });
     }
 

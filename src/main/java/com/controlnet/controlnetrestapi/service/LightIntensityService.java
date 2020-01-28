@@ -7,6 +7,7 @@ import com.controlnet.controlnetrestapi.repository.LightIntensityViewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -27,5 +28,10 @@ public class LightIntensityService {
 
     public void insertNewLightIntensity(LightIntensity lightIntensity) {
         lightIntensityRepository.save(lightIntensity);
+    }
+
+    @Transactional
+    public void deleteAllMeasurements(int sensorId) {
+        lightIntensityRepository.deleteBySensorId(sensorId);
     }
 }
