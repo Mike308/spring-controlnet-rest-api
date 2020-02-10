@@ -37,4 +37,9 @@ public class CommandController {
     public void deleteAllCommands(@PathVariable int moduleId) {
         commandService.deleteCommands(moduleId);
     }
+
+    @GetMapping("/all")
+    public List<Command> getAll() {
+        return commandService.getCommands();
+    }
 }
