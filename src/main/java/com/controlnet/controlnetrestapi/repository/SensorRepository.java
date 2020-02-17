@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface SensorRepository extends CrudRepository <Sensor, Integer> {
     Sensor getSensorBySensorCode(String code);
+    Sensor getSensorById(int id);
     void deleteByModuleId(int moduleId);
+    void deleteById(int id);
     List<Sensor> findAllBySensorCode(String sensorCode);
 }
