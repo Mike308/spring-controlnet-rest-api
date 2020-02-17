@@ -125,6 +125,12 @@ public class HubService {
         });
     }
 
+    private void deleteMeasurementsBySensorId(int sensorId) {
+        temperatureService.deleteTemperature(sensorId);
+        humidityService.deleteHumidity(sensorId);
+        lightIntensityService.deleteAllMeasurements(sensorId);
+    }
+
     private void deleteAllSensors(int moduleId) {
         sensorService.deleteSensors(moduleId);
     }
@@ -136,5 +142,12 @@ public class HubService {
         sensors.forEach(sensor -> {
             sensorService.deleteSensorSlot(sensor.getSensorSlotId());
         });
+    }
+
+    public void deleteSelectedSensor(int sensorId) {
+        deleteMeasurementsBySensorId(sensorId);
+        Sensor sensor = sensorService.getSensorById(sensorId);
+        sensorService.deleteSensor(sensorId);
+        sensorService.deleteSensorSlot(sensor.getSensorSlot());
     }
 }
