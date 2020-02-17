@@ -54,6 +54,10 @@ public class SensorService {
         return sensorSlotRepository.findFirstByOrderByIdDesc();
     }
 
+    public Sensor getSensorById(int sensorId) {
+        return sensorRepository.getSensorById(sensorId);
+    }
+
     @Transactional
     public boolean setSlotName(int sensorId, String newSlotName){
         try {
@@ -97,6 +101,11 @@ public class SensorService {
     public void deleteSensorSlot(int slotId) {
         sensorSlotRepository.deleteById(slotId);
     }
+
+    @Transactional
+    public void deleteSensor(int sensorId) {sensorRepository.deleteById(sensorId);}
+
+
 
 
 
