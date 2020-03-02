@@ -42,6 +42,10 @@ public class SensorService {
         return sensorRepository.getSensorBySensorCode(code);
     }
 
+    public SensorView getSensorInformationBySensorId(int sensorId) {
+        return sensorViewRepository.getAllBySensorId(sensorId);
+    }
+
     public List<Sensor> getSensorsBySensorCode(String sensorCode) {
         return sensorRepository.findAllBySensorCode(sensorCode);
     }
