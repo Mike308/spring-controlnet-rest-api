@@ -1,6 +1,6 @@
 package com.controlnet.controlnetrestapi.configuration;
 
-import com.controlnet.controlnetrestapi.security.JWTAuthentificationFilter;
+import com.controlnet.controlnetrestapi.security.JWTAuthenticationFilter;
 import com.controlnet.controlnetrestapi.security.JWTAuthorizationFilter;
 import com.controlnet.controlnetrestapi.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         authorizeRequests()
                 .antMatchers("**").authenticated()
                 .and()
-                .addFilter(new JWTAuthentificationFilter(authenticationManager()))
+                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
